@@ -137,6 +137,7 @@ class CircularSLinkedList:
     def clear(self) -> None:
         if self.head is not None:
             self.head = None
+            self.tail.next = None
             self.tail = None
             self.number_of_nodes = 0
 
