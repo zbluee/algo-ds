@@ -81,17 +81,81 @@ class CircularDoublyLinkedList:
         itr.next = node
         self.__number_of_nodes += 1
 
+    def remove_at_beg(self) -> None:
+        if self.head is None:
+            raise IndexError("remove from empty list")
 
-if __name__ == "__main__":
-    cdll = CircularDoublyLinkedList()
-    cdll.insert_at_beg(4)
-    cdll.insert_at_beg(2)
-    cdll.insert_at_beg(1)
-    cdll.insert_at_end(5)
-    cdll.insert_at_end(6)
-    cdll.insert_at_end(7)
-    cdll.insert(0, 0)
-    cdll.insert(3, 3)
-    print([data for data in cdll], len(cdll))
-    print([data for data in cdll.reverse()], len(cdll))
+        if self.head == self.tail:
+            self.head.next = None
+            self.head.prev = None
+            self.head = None
+            self.tail = None
+            self.__number_of_nodes -= 1
+            return
 
+        self.head = self.head.next
+        self.head.prev = self.tail
+        self.tail.next = self.head
+        self.__number_of_nodes -= 1
+
+    def remove_at_end(self) -> None:
+        if self.head == self.tail:
+            self.remove_at_beg()
+            return
+
+        if self.head is None:
+            raise IndexError("remove from empty list")
+
+        self.tail = self.tail.prev
+        self.tail.next = self.head
+        self.head.prev = self.tail
+        self.__number_of_nodes -= 1
+
+    def remove(self, index : int) -> None:
+        if index == 0:
+            self.remove_at_beg()
+            return
+
+        if index == self.__number_of_nodes - 1:
+            self.remove_at_end()
+            return
+
+        if self.head is None:
+            raise IndexError("remove from empty list")
+
+        if index < 0 or index >= self.__number_of_nodes:
+            raise IndexError("index out of bound")
+
+        itr = self.head
+        while index - 1 > 0:
+            itr = itr.next
+            index -= 1
+
+        itr.next = itr.next.next
+        itr.next.prev = itr
+        self.__number_of_nodes -= 1
+
+    def search(self, value) -> bool:
+        itr = self.head
+        while itr:
+            if itr.data == value:
+                return True
+            if itr.next == self.head:
+                break
+            itr = itr.next
+
+        return False
+
+    def clear(self) -> None:
+        if self.head is not None:
+
+            self.tail.next = None
+            itr = self.head
+
+            while itr:
+                itr.prev = None
+                itr = itr.next
+
+            self.head = None
+            self.tail = None
+            self.__number_of_nodes = 0
