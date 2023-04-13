@@ -3,8 +3,8 @@ Data Structures and Algorithms
 Welcome to the algo-ds repository! This repository is a collection of code samples that cover various data structures and algorithms. It includes implementations of:
 
 - Linked Lists (Singly, Doubly, and Circular)
+- Stacks (List, LinkedList)
 - Queues (Array, Linked List, Circular)
-- Stacks 
 - Trees (Binary, AVL, Red-Black)
 - Graphs (Undirected, Directed, Weighted)
 In addition to these data structures, various algorithms are also included, such as:
