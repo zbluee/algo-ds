@@ -33,10 +33,23 @@ class Stack:
         self.linkedList.head = node
         self.linkedList.nodes += 1
 
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("Remove from empty stack.")
 
-stack = Stack()
-stack.push(5)
-stack.push(4)
-stack.push(3)
-print(stack.is_empty())
-print([v for v in stack], len(stack))
+        removed = self.linkedList.head.data
+        self.linkedList.head = self.linkedList.head.next
+        self.linkedList.nodes -= 1
+        return removed
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Empty Stack")
+
+        return self.linkedList.head.data
+
+    def clear(self) -> None:
+        if not self.is_empty():
+            self.linkedList.head = None
+            self.linkedList.nodes = 0
+
