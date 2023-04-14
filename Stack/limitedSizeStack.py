@@ -23,12 +23,20 @@ class Stack:
 
         self.list.append(value)
 
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("Remove form empty stack.")
 
-stack = Stack(5)
-stack.push(4)
-stack.push(3)
-stack.push(3)
-stack.push(3)
-stack.push(2)
-stack.push(3)
-print([v for v in stack], len(stack))
+        return self.list.pop()
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("The stack is empty.")
+
+        return self.list[-1]
+
+    def clear(self) -> None:
+        if not self.is_empty():
+            self.list = []
+
+
