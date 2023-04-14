@@ -2,9 +2,6 @@
 
 A stack is a linear data structure that follows the Last-In-First-Out (LIFO) principle. It has two main operations, `push` and `pop`, which add and remove elements from the top of the stack, respectively.
 
-### Implementation
-
-
 <center>
 
 ## Time and Space Complexity
