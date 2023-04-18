@@ -37,14 +37,3 @@ class Queue:
             self.list = []
             self.count = 0
 
-
-q = Queue()
-
-q.enqueue(1)
-q.enqueue(2)
-q.enqueue(3)
-q.dequeue()
-q.dequeue()
-q.clear()
-print(q.peek())
-print([v for v in q], len(q))
