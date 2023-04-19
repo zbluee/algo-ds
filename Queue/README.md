@@ -26,7 +26,7 @@ A queue is a linear data structure that allows for the ordered storage and retri
 
 ### • Circular Queue 
 
- `Queue` class that supports standard queue operations such as enqueue, dequeue, and peek. The class uses a list to store the elements and has additional methods to check if the queue is empty, clear the queue, and provide iterator and length functionality. 
+The `CircularQueue` class is a Python implementation of a circular queue data structure. It supports the basic operations of enqueue, dequeue, peek, clear, and checking if the queue is empty or full. It uses a circular buffer to achieve constant-time enqueue and dequeue operations.
 
 | Method | Description | Time Complexity | Space Complexity |
 | ------ | ----------- | --------------- | ---------------- |
