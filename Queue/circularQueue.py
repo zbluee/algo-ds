@@ -23,17 +23,35 @@ class CircularQueue:
         if self.is_empty():
             self.front = 0
             self.rare = 0
-
         else:
             self.rare = (self.rare + 1) % self.max_size
 
         self.list[self.rare] = value
 
+    def dequeue(self):
+        if self.is_empty():
+            raise IndexError("Remove from empty queue.")
 
-cq = CircularQueue(3)
-print(cq.is_empty(), cq.is_full())
-cq.enqueue(1)
-cq.enqueue(2)
-cq.enqueue(3)
-print(cq.is_empty(), cq.is_full())
-print([v for v in cq])
+        first_value = self.list[self.front]
+        self.list[self.front] = None
+
+        # when one element left in the queue, update the front and rare values to their start position
+        if self.front == self.rare:
+            self.front = -1
+            self.rare = -1
+        else:
+            self.front = (self.front + 1) % self.max_size
+
+        return first_value
+
+    def peek(self):
+        if self.is_empty():
+            return IndexError("The Queue is empty.")
+        return self.list[self.front]
+
+    def clear(self):
+        if not self.is_empty():
+            self.list = [None] * self.max_size
+            self.front = -1
+            self.rare = -1
+
