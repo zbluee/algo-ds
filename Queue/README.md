@@ -40,4 +40,19 @@ The `CircularQueue` class is a Python implementation of a circular queue data st
 
 <br>
 
+### • Queue LinkedList
+
+defines a `Queue` data structure using a singly-linked list implementation. The Queue allows items to be added to the back of the Queue using the `enqueue` method, and removed from the front of the Queue using the `dequeue` method. The `peek` method allows for accessing the front element of the Queue without removing it. The `clear` method removes all elements from the Queue. This implementation is efficient, with O(1) time complexity for most operations.
+
+| Method | Description | Time Complexity | Space Complexity |
+| ------ | ----------- | --------------- | ---------------- |
+| `create queue` | Initializes an empty queue by creating a new instance of the LinkedList class. | O(1) | O(1) |
+| `length` | Returns the number of elements in the queue in constant time by returning the nodes attribute of the LinkedList object. | O(1) | O(1) |
+| `is empty` |Returns a boolean indicating if the queue is empty by checking if the head pointer of the LinkedList object is None. | O(1) | O(1) |
+| `enqueue` | Adds a new element to the end of the queue. If the queue is empty, the head and tail pointers are set to the new element. | O(1)| O(1) |
+| `dequeue` |Removes and returns the first element in the queue. Raises an error if the queue is empty. If the queue has only one element, the head and tail pointers are set to None. | O(1) | O(1) |
+| `peek` |Returns the first element in the queue without removing it. Raises an error if the queue is empty. | O(1) | O(1) |
+| `clear` | Clears the queue by setting the head and tail pointers to None and the nodes attribute of the LinkedList object to 0. | O(1) | O(1) |
+
+
 *Note: n is the number of elements in the queue.*
