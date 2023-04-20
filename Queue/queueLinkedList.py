@@ -40,10 +40,29 @@ class Queue:
         self.linkedList.tail = node
         self.linkedList.nodes += 1
 
+    def dequeue(self):
+        if self.is_empty():
+            raise IndexError("Remove from empty queue.")
 
-q = Queue()
-q.enqueue(1)
-q.enqueue(2)
-q.enqueue(3)
+        first_value = self.linkedList.head.data
 
-print([v for v in q], len(q))
+        if self.linkedList.head == self.linkedList.tail:
+            self.linkedList.head = None
+            self.linkedList.tail = None
+            self.linkedList.nodes -= 1
+            return first_value
+
+        self.linkedList.head = self.linkedList.head.next
+        self.linkedList.nodes -= 1
+        return first_value
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("The Queue is empty.")
+        return self.linkedList.head.data
+
+    def clear(self):
+        if not self.is_empty():
+            self.linkedList = LinkedList()
+
+
