@@ -201,7 +201,7 @@ class BinaryTree:
 
         return current_node
 
-    def delete_depeest_node(self) -> None:
+    def delete_deepest_node(self) -> None:
         """
         Deletes the deepest node in the binary tree rooted at the given node.
 
@@ -257,7 +257,7 @@ class BinaryTree:
                 self.nodes -= 1
             else:
                 self.root.data = self.get_deepest_node().data
-                self.delete_depeest_node()
+                self.delete_deepest_node()
             return True
 
         queue = deque([self.root])
@@ -265,7 +265,7 @@ class BinaryTree:
             current_node = queue.popleft()
             if current_node.data == data_to_delete:
                 current_node.data = self.get_deepest_node().data
-                self.delete_depeest_node()
+                self.delete_deepest_node()
                 return
 
             if current_node.left and current_node.left.data == data_to_delete:
@@ -274,7 +274,7 @@ class BinaryTree:
                     self.nodes -= 1
                 else:
                     current_node.left.data = self.get_deepest_node().data
-                    self.delete_depeest_node()
+                    self.delete_deepest_node()
 
                 return True
 
@@ -284,7 +284,7 @@ class BinaryTree:
                     self.nodes -= 1
                 else:
                     current_node.right.data = self.get_deepest_node().data
-                    self.delete_depeest_node()
+                    self.delete_deepest_node()
 
                 return True
 
