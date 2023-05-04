@@ -124,4 +124,41 @@ class BinaryTree:
 
         return result
 
+    def insert(self, data) -> None:
+        """
+        Inserts a new node with the given data into the tree.
 
+        Args:
+            data: The data to be stored in the new node.
+        """
+        node = TreeNode(data)
+        if not self.root:
+            self.root = node
+            self.nodes += 1
+            return
+
+        queue = deque([self.root])
+        while queue:
+            current_node = queue.popleft()
+
+            if current_node.left is None:
+                current_node.left = node
+                return
+
+            if current_node.right is None:
+                current_node.right = node
+                return
+
+            queue.append(current_node.left)
+            queue.append(current_node.right)
+
+        self.nodes += 1
+
+
+bt = BinaryTree()
+bt.insert("Drink")
+bt.insert("Hot")
+bt.insert("Cold")
+bt.insert("Tea")
+bt.insert("Coffee")
+print(bt.levelorder_traversal())
