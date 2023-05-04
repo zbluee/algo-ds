@@ -210,9 +210,14 @@ class BinaryTree:
         """
         if not self.root:
             return
+        if not self.root.left and not self.root.right:
+            self.root = None
+            self.nodes -= 1
+            return
 
         queue = deque([self.root])
         deepest_node = self.get_deepest_node()
+
         while queue:
             current_node = queue.popleft()
             if current_node is deepest_node:
@@ -233,16 +238,84 @@ class BinaryTree:
             queue.append(current_node.right)
             queue.append(current_node.left)
 
+    def delete(self, data_to_delete) -> bool:
+        """
+        Deletes the node with the given data from the tree, if it exists.
+
+        Args:
+            data: The data to be deleted.
+
+        Returns:
+            True if the node was found and deleted, False otherwise.
+        """
+        if not self.root:
+            return False
+
+        if self.root.data == data_to_delete:
+            if not self.root.left and not self.root.right:
+                self.root = None
+                self.nodes -= 1
+            else:
+                self.root.data = self.get_deepest_node().data
+                self.delete_depeest_node()
+            return True
+
+        queue = deque([self.root])
+        while queue:
+            current_node = queue.popleft()
+            if current_node.data == data_to_delete:
+                current_node.data = self.get_deepest_node().data
+                self.delete_depeest_node()
+                return
+
+            if current_node.left and current_node.left.data == data_to_delete:
+                if not current_node.left and not current_node.right:
+                    current_node.left = None
+                    self.nodes -= 1
+                else:
+                    current_node.left.data = self.get_deepest_node().data
+                    self.delete_depeest_node()
+
+                return True
+
+            if current_node.right and current_node.right.data == data_to_delete:
+                if not current_node.left and not current_node.right:
+                    current_node.right = None
+                    self.nodes -= 1
+                else:
+                    current_node.right.data = self.get_deepest_node().data
+                    self.delete_depeest_node()
+
+                return True
+
+            if current_node.left is not None:
+                queue.append(current_node.left)
+
+            if current_node.right is not None:
+                queue.append(current_node.right)
+
+        return False
+
+    def height(self) -> int:
+        """
+        Returns the height of the binary tree.
+
+        Returns:
+            The height of the binary tree.
+        """
+        def height_helper(root):
+            if not root:
+                return 0
+            return 1 + max(height_helper(root.left), height_helper(root.right))
+
+        return height_helper(self.root) - 1
 
 bt = BinaryTree()
 bt.insert("Drink")
 bt.insert("Hot")
 bt.insert("Cold")
 bt.insert("Tea")
-bt.insert("Coffee")
-bt.insert("Alcholic")
-bt.delete_depeest_node()
+print(bt.height())
 print(bt.levelorder_traversal())
-print(bt.get_deepest_node().data)
 print(f'length : {len(bt)}')
 
