@@ -35,10 +35,8 @@ class BinaryTree:
 
     def preorder_traversal(self) -> list:
         """
-        Traverses the tree in in-order (left, root, right) and returns a list of nodes visited.
+        Traverses the tree in in-order (root, left, right) and returns a list of nodes visited.
 
-        Returns:
-            A list of nodes visited in pre-order traversal.
         """
         result = []
         stack = [self.root] if self.root else []
@@ -58,8 +56,6 @@ class BinaryTree:
         """
         Traverses the tree in in-order (left, root, right) and returns a list of nodes visited.
 
-        Returns:
-            A list of nodes visited in in-order traversal.
         """
         result = []
         stack = []
@@ -79,8 +75,6 @@ class BinaryTree:
         """
         Traverses the tree in post-order (left, right, root) and returns a list of nodes visited.
 
-        Returns:
-            A list of nodes visited in post-order traversal.
         """
         result = []
         stack = []
@@ -104,8 +98,6 @@ class BinaryTree:
         """
         Traverses the tree in level-order and returns a list of nodes visited.
 
-        Returns:
-            A list of nodes visited in level-order traversal.
         """
         if not self.root:
             return []
