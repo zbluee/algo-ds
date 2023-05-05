@@ -129,19 +129,49 @@ class BinaryTree:
 
         return result
 
+    def get_deepest_node(self):
+        """
+        Returns the deepest leaf node in the binary tree rooted
 
-bt = BinaryTree(8)
-bt.insert("Drink")
-bt.insert("Hot")
-bt.insert("Cold")
-bt.insert("Tea")
-print(bt.get_root())
-print("preorder\n")
-print(bt.preorder_traversal())
-print("\ninorder\n")
-print(bt.inorder_traversal())
-print("\npostorder\n")
-print(bt.postorder_traversal())
-print("\nlevelorder\n")
-print(bt.levelorder_traversal())
-print(bt.get_root())
+        """
+        if self.is_empty():
+            return IndexError("Binary Tree is empty.")
+        return self.root[self.last_visited_index]
+
+    def delete_deepest_node(self) -> bool:
+        """
+        Deletes the deepest node in the binary tree.
+
+        """
+        if self.is_empty():
+            return IndexError("Binary Tree is empty.")
+
+        self.root[self.last_visited_index] = None
+        self.last_visited_index -= 1
+        return True
+
+    def delete(self, data) -> bool:
+        """
+        Deletes the node with the given data from the tree, if it exists.
+
+        """
+        if self.is_empty():
+            return IndexError("Binary Tree is empty")
+
+        for i in range(1, self.last_visited_index + 1):
+            if self.root[i] == data:
+                self.root[i] = self.get_deepest_node()
+                self.delete_deepest_node()
+                return True
+
+        return False
+
+    def clear(self) -> None:
+        """
+        Clears the binary tree, removing all nodes.
+
+        """
+        self.root = [None] * self.max_size
+        self.last_visited_index = 0
+
+
