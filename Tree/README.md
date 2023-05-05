@@ -29,6 +29,7 @@ The tree data structure has a wide range of applications, including representing
 | `delete_deepest_node` | Deletes the deepest node in the binary tree rooted at the given node. This is done using a queue to traverse the tree to find the deepest node, and then deleting it. If the tree has only one node, the root is set to None.| O(n) | O(n) |
 | `delete` |  method deletes a node with the given data from the binary tree, if it exists. If the root node has the data to be deleted, it is replaced with the deepest node in the tree, which is then deleted. If the data is not found in the root node, the method performs a level-order traversal of the tree to find the node with the data. Once found, the method replaces the node with the deepest node in the tree, which is then deleted. The method returns `True` if the node was found and deleted, and `False` otherwise.| O(n) | O(n) |
 | `height` | Returns the number of nodes in the binary tree. | O(n) | O(n) |
+| `clear` | Deletes the entire binary tree. | O(1) | O(1) |
 
 <br>
 
