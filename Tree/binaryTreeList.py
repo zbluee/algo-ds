@@ -29,36 +29,119 @@ class BinaryTree:
         """
         Checks if the binary tree is empty.
 
-        Returns:
-        --------
-        bool
-            True if the binary tree is empty, False otherwise.
-
         """
         return self.last_visited_index == 0
 
     def insert(self, data):
         """
-        Inserts a new node with value `val` into the binary tree.
-
-        Parameters:
-        -----------
-        data : Any
-            The value to be inserted into the tree.
-
-        Returns:
-        --------
-        bool
-            True if the insertion is successful, False if the tree is full.
+        Inserts a new node with value `data` into the binary tree.
 
         """
-        if self.last_visited_index  >= self.max_size:
-            return IndexError("it's on maximum capcity.")
+        if self.last_visited_index + 1 == self.max_size:
+            return IndexError("Binary tree is full.")
 
         self.last_visited_index += 1
         self.root[self.last_visited_index] = data
         return True
 
+    def get_root(self):
+        """
+        Returns the root node of the binary tree.
+
+        """
+        if self.is_empty():
+            return IndexError("Binary tree is empty.")
+        return self.root[1]
+
+    def contains(self, data) -> bool:
+        """
+        Searches the binary tree for a node with value `data`.
+        """
+        if self.is_empty():
+            return False
+
+        for i in range(1, self.last_visited_index + 1):
+            if self.root[i] == data:
+                return True
+        return False
+
+    def preorder_traversal(self) -> list:
+        """
+        Traverses the tree in in-order (root, left , right) and returns a list of nodes visited.
+
+        """
+        index, result = 1, []
+
+        def preorder_helper(index):
+            if index > self.last_visited_index:
+                return
+            result.append(self.root[index])
+            preorder_helper(index * 2)
+            preorder_helper(index * 2 + 1)
+
+        preorder_helper(index)
+        return result
+
+    def inorder_traversal(self) -> list:
+        """
+        Traverses the tree in in-order (left, root, right) and returns a list of nodes visited.
+
+        """
+        index, result = 1, []
+
+        def inorder_helper(index):
+            if index > self.last_visited_index:
+                return
+
+            inorder_helper(index * 2)
+            result.append(self.root[index])
+            inorder_helper(index * 2 + 1)
+
+        inorder_helper(index)
+        return result
+
+    def postorder_traversal(self) -> list:
+        """
+        Traverses the tree in in-order (left, right, root) and returns a list of nodes visited.
+
+        """
+        index, result = 1, []
+
+        def postorder_helper(index):
+            if index > self.last_visited_index:
+                return
+
+            postorder_helper(index * 2)
+            postorder_helper(index * 2 + 1)
+            result.append(self.root[index])
+
+        postorder_helper(index)
+        return result
+
+    def levelorder_traversal(self) -> list:
+        """
+        Traverses the tree in level-order and returns a list of nodes visited.
+
+        """
+        result = []
+        for i in range(1, self.last_visited_index + 1):
+            result.append(self.root[i])
+
+        return result
 
 
-
+bt = BinaryTree(8)
+bt.insert("Drink")
+bt.insert("Hot")
+bt.insert("Cold")
+bt.insert("Tea")
+print(bt.get_root())
+print("preorder\n")
+print(bt.preorder_traversal())
+print("\ninorder\n")
+print(bt.inorder_traversal())
+print("\npostorder\n")
+print(bt.postorder_traversal())
+print("\nlevelorder\n")
+print(bt.levelorder_traversal())
+print(bt.get_root())
