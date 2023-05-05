@@ -25,6 +25,40 @@ class BinaryTree:
         """
         return self.last_visited_index
 
+    def is_empty(self) -> bool:
+        """
+        Checks if the binary tree is empty.
+
+        Returns:
+        --------
+        bool
+            True if the binary tree is empty, False otherwise.
+
+        """
+        return self.last_visited_index == 0
+
+    def insert(self, data):
+        """
+        Inserts a new node with value `val` into the binary tree.
+
+        Parameters:
+        -----------
+        data : Any
+            The value to be inserted into the tree.
+
+        Returns:
+        --------
+        bool
+            True if the insertion is successful, False if the tree is full.
+
+        """
+        if self.last_visited_index  >= self.max_size:
+            return IndexError("it's on maximum capcity.")
+
+        self.last_visited_index += 1
+        self.root[self.last_visited_index] = data
+        return True
+
 
 
 
