@@ -299,23 +299,22 @@ class BinaryTree:
     def height(self) -> int:
         """
         Returns the height of the binary tree.
-
-        Returns:
-            The height of the binary tree.
         """
         def height_helper(root):
             if not root:
                 return 0
             return 1 + max(height_helper(root.left), height_helper(root.right))
 
-        return height_helper(self.root) - 1
+        return height_helper(self.root)
 
-bt = BinaryTree()
-bt.insert("Drink")
-bt.insert("Hot")
-bt.insert("Cold")
-bt.insert("Tea")
-print(bt.height())
-print(bt.levelorder_traversal())
-print(f'length : {len(bt)}')
+    def clear(self) -> None:
+        """
+        Deletes the BinaryTree.
+        """
+        if self.root is not None:
+            self.root = None
+            self.left = None
+            self.right = None
+            self.nodes = 0
+
 
