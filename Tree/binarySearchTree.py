@@ -154,22 +154,57 @@ class BST:
 
         return result
 
+    def contains(self, data) -> bool:
+        """
+        Searches for the node containing the given data in the binary tree and it return True if it exists else false."
 
-bst = BST()
-bst.insert(80)
-bst.insert(60)
-bst.insert(100)
-bst.insert(40)
-bst.insert(70)
-bst.insert(30)
-bst.insert(50)
-bst.insert(120)
-bst.insert(90)
-print("preorder\n")
-print(bst.preorder_traversal())
-print("\ninorder\n")
-print(bst.inorder_traversal())
-print("\npostorder\n")
-print(bst.postorder_traversal())
-print("\nlevelorder\n")
-print(bst.levelorder_traversal())
+        """
+        if not self.root:
+            return False
+
+        current_node = self.root
+        while current_node:
+            if data == current_node.data:
+                return True
+            if data <= current_node.data:
+                current_node = current_node.left
+
+            else:
+                current_node = current_node.right
+
+        return False
+
+    def delete(self, data):
+        """
+        Deletes the node with the given data from the tree, if it exists.
+
+        """
+        if not self.root:
+            return
+
+        def delete_helper(root, data):
+            if not root:
+                return
+            elif data < root.data:
+                root.left = delete_helper(root.left, data)
+            elif data > root.data:
+                root.right = delete_helper(root.right, data)
+            else:
+                if root.left is None:
+                    temp = root.right
+                    root.right = None
+                    return temp
+                if root.right is None:
+                    temp = temp.left
+                    root.left = None
+                    return temp
+
+                min_node = self.get_min_node(root.right)
+                root.data = min_node.data
+                root.right = delete_helper(root.right, min_node.data)
+
+            return root
+
+        return delete_helper(self.root, data)
+
+
