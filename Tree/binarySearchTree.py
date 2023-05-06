@@ -209,35 +209,19 @@ class BST:
 
         return delete_helper(self.root, data)
 
+    def height(self) -> int:
+        if not self.root:
+            return 0
+
+        def height_helper(root):
+            if not root:
+                return 0
+            return 1 + max(height_helper(root.left), height_helper(root.right))
+
+        return height_helper(self.root)
+
     def clear(self) -> None:
         self.root = None
         self.root.left = None
         self.root.right = None
-
-
-bst = BST()
-bst.insert(70)
-bst.insert(50)
-bst.insert(90)
-bst.insert(30)
-bst.insert(60)
-bst.insert(20)
-bst.insert(40)
-bst.insert(100)
-bst.insert(80)
-print(bst.levelorder_traversal(), len(bst))
-bst.delete(70)
-bst.delete(90)
-bst.delete(70)
-# print("preorder\n")
-# print(bst.preorder_traversal())
-# print("\ninorder\n")
-# print(bst.inorder_traversal())
-# print("\npostorder\n")
-# print(bst.postorder_traversal())
-# print(bst.postorder_traversalR())
-print("\nlevelorder\n")
-print("max :", bst.get_max_node().data)
-print("min :", bst.get_min_node().data)
-print(bst.levelorder_traversal(), len(bst))
 
