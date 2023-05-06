@@ -193,10 +193,12 @@ class BST:
                 if root.left is None:
                     temp = root.right
                     root.right = None
+                    self.nodes -= 1
                     return temp
                 if root.right is None:
                     temp = temp.left
                     root.left = None
+                    self.nodes -= 1
                     return temp
 
                 min_node = self.get_min_node(root.right)
@@ -207,4 +209,35 @@ class BST:
 
         return delete_helper(self.root, data)
 
+    def clear(self) -> None:
+        self.root = None
+        self.root.left = None
+        self.root.right = None
+
+
+bst = BST()
+bst.insert(70)
+bst.insert(50)
+bst.insert(90)
+bst.insert(30)
+bst.insert(60)
+bst.insert(20)
+bst.insert(40)
+bst.insert(100)
+bst.insert(80)
+print(bst.levelorder_traversal(), len(bst))
+bst.delete(70)
+bst.delete(90)
+bst.delete(70)
+# print("preorder\n")
+# print(bst.preorder_traversal())
+# print("\ninorder\n")
+# print(bst.inorder_traversal())
+# print("\npostorder\n")
+# print(bst.postorder_traversal())
+# print(bst.postorder_traversalR())
+print("\nlevelorder\n")
+print("max :", bst.get_max_node().data)
+print("min :", bst.get_min_node().data)
+print(bst.levelorder_traversal(), len(bst))
 
